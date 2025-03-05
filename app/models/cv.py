@@ -26,6 +26,10 @@ class CV(Base):
     # Relationships
     website = relationship("Website", back_populates="cvs")
     # location = relationship("Location", back_populates="cvs")
+    experiences = relationship("Experiences", back_populates="cv")
+    skills = relationship("Skills", back_populates="cv")
+    educations = relationship("Educations", back_populates="cv")
+    # location = relationship("Location", back_populates="cvs")
 
     __table_args__ = (
         Index('idx_cv_not_deleted', 'deleted', postgresql_where=text('deleted = false')),

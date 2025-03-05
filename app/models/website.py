@@ -19,7 +19,7 @@ class Website(Base):
     
     # Relationships
     owner = relationship("User", back_populates="websites")
-    cvs = relationship("CV", back_populates="website")
+    # cvs = relationship("CV", back_populates="website")
     
     # Define a partial index for efficient queries on non-deleted records
     __table_args__ = (
