@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy.sql import func
 from ..models.user import User
 from ..schemas.user import UserCreate, UserUpdate
 

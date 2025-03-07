@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr, HttpUrl
+from pydantic import BaseModel, EmailStr
 from typing import Optional
 from datetime import datetime
 
@@ -10,7 +10,7 @@ class CVBase(BaseModel):
     facebook: Optional[str] = None
     linkedin: Optional[str] = None
     github: Optional[str] = None
-    x: Optional[str] = None  # Twitter/X
+    x: Optional[str] = None
     instagram: Optional[str] = None
 
 class CVCreate(CVBase):
@@ -32,11 +32,11 @@ class CVUpdate(BaseModel):
 
 class CVResponse(CVBase):
     id: int
-    created_at: datetime
-    updated_at: datetime
+    created: datetime
+    updated: datetime
     deleted: bool
     website_id: int
     location_id: Optional[int] = None
-    
+   
     class Config:
         from_attributes = True

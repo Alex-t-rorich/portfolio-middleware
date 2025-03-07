@@ -12,7 +12,7 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Portfolio API")
 
-# Configure CORS
+# Configure CORSFor njow
 # app.add_middleware(
 #     CORSMiddleware,
 #     allow_origins=["http://localhost:3000"],

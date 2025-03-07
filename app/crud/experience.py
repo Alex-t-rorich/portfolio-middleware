@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from ..models.education import Experience
+from ..models.experience import Experience
 from ..schemas.experience import ExperienceCreate, ExperienceUpdate
 
 def list_experiences(db: Session, cv_id: int):
@@ -8,7 +8,7 @@ def list_experiences(db: Session, cv_id: int):
 def get_experience(db: Session, experience_id: int):
     return db.query(Experience).filter(Experience.id == experience_id).first()
 
-def create_experience(db: Session, education: ExperienceCreate):
+def create_experience(db: Session, experience: ExperienceCreate):
     db_experience = Experience(
         title=experience.title,
         description=experience.description,
@@ -20,37 +20,36 @@ def create_experience(db: Session, education: ExperienceCreate):
         experience=experience.experience,
         cv_id=experience.cv_id
     )
-    
+   
     db.add(db_experience)
     db.commit()
     db.refresh(db_experience)
-    
+   
     return db_experience
 
 def update_experience(db: Session, experience_id: int, experience_data: ExperienceUpdate):
     db_experience = db.query(Experience).filter(Experience.id == experience_id).first()
-    
+   
     if not db_experience:
         return None
-    
-    update_data = education_data.model_dump(exclude_unset=True)
-    
+   
+    update_data = experience_data.model_dump(exclude_unset=True) 
+   
     for key, value in update_data.items():
         setattr(db_experience, key, value)
-    
+   
     db.commit()
-    
     db.refresh(db_experience)
-    
+   
     return db_experience
 
 def delete_experience(db: Session, experience_id: int):
     db_experience = db.query(Experience).filter(Experience.id == experience_id).first()
-    
+   
     if not db_experience:
         return False
-    
-    db_user.deleted = True
+   
+    db_experience.deleted = True
     db.commit()
-    
+   
     return True

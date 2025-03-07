@@ -44,7 +44,7 @@ def delete_skill(db: Session, skill_id: int):
     if not db_skill:
         return False
    
-    db_user.deleted = True
+    db_skill.deleted = True
     db.commit()
        
     return True
