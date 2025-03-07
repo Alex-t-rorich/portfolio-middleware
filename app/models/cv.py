@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey, Text
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey, Text, Index
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 
@@ -24,15 +24,15 @@ class CV(Base):
     website_id = Column(Integer, ForeignKey("websites.id"), nullable=False)
     
     # Relationships
-    website = relationship("Website", back_populates="cvs")
-    # location = relationship("Location", back_populates="cvs")
-    experiences = relationship("Experiences", back_populates="cv")
-    skills = relationship("Skills", back_populates="cv")
-    educations = relationship("Educations", back_populates="cv")
-    # location = relationship("Location", back_populates="cvs")
+    website = relationship("Website", back_populates="cv")
+    # location = relationship("Location", back_populates="cv")
+    experience = relationship("Experience", back_populates="cv")
+    skill = relationship("Skill", back_populates="cv")
+    education = relationship("Education", back_populates="cv")
+    # location = relationship("Location", back_populates="cv")
 
     __table_args__ = (
-        Index('idx_cv_not_deleted', 'deleted', postgresql_where=text('deleted = false')),
+        Index('idx_cv_not_deleted', 'deleted', postgresql_where=Text('deleted = false')),
     )
     
     def __repr__(self):

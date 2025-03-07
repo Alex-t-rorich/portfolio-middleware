@@ -1,10 +1,10 @@
-from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey, Text
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey, Text, Index, text
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 
 from .base import Base
 
-class Educations(Base):
+class Education(Base):
     __tablename__ = "cv_educations"
     
     id = Column(Integer, primary_key=True, index=True)
@@ -18,8 +18,9 @@ class Educations(Base):
     cv_id = Column(Integer, ForeignKey("cvs.id"), nullable=False)
     
     # Relationships
-    cv = relationship("CV", back_populates="educations")
+    cv = relationship("CV", back_populates="education")
     
+
     __table_args__ = (
         Index('idx_education_not_deleted', 'deleted', postgresql_where=text('deleted = false')),
     )

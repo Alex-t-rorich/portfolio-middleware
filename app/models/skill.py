@@ -1,4 +1,3 @@
-# SQLAlchemy Model
 from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey, Text, Index, text
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
@@ -17,7 +16,7 @@ class Skill(Base):
     ranking = Column(Integer, nullable=True)
     
     # Relationships
-    cv = relationship("CV", back_populates="skills")
+    cv = relationship("CV", back_populates="skill")
     
     __table_args__ = (
         Index('idx_skill_not_deleted', 'deleted', postgresql_where=text('deleted = false')),

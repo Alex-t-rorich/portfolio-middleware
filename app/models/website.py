@@ -1,5 +1,4 @@
-# app/models/websites.py
-from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey, Index, text
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, ForeignKey, Index, Text, text
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 
@@ -18,8 +17,8 @@ class Website(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     
     # Relationships
-    owner = relationship("User", back_populates="websites")
-    # cvs = relationship("CV", back_populates="website")
+    owner = relationship("User", back_populates="website")
+    cv = relationship("CV", back_populates="website")
     
     # Define a partial index for efficient queries on non-deleted records
     __table_args__ = (

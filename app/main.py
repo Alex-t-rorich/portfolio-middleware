@@ -8,7 +8,7 @@ from app.models.base import Base
 from app.database import engine
 
 # Create database tables
-Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine, checkfirst=True)
 
 app = FastAPI(title="Portfolio API")
 
@@ -34,7 +34,7 @@ async def favicon():
     return FileResponse("static/favicon.ico")
 
 # Include routes
-app.include_router(api_router)
+app.include_router(api_router, prefix="/api/v1")
 
 @app.get("/")
 def read_root():

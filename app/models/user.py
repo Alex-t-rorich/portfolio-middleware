@@ -1,7 +1,6 @@
-from sqlalchemy import Boolean, Column, Integer, String, DateTime, Date, Index, text
+from sqlalchemy import Boolean, Column, Integer, String, DateTime, Date, Index, Text, text
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
-from .website import Website
 
 from .base import Base
 
@@ -21,7 +20,7 @@ class User(Base):
     last_login = Column(Date, nullable=True)
 
     # Relationships
-    websites = relationship("Website", back_populates="owner")
+    website = relationship("Website", back_populates="owner")
 
     # Define a partial index for efficient queries on non-deleted records
     __table_args__ = (

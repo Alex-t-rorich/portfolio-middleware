@@ -22,8 +22,8 @@ class Experience(Base):
     # location_id = Column(Integer, ForeignKey("locations.id"), nullable=True)
     
     # Relationships
-    cv = relationship("CV", back_populates="experiences")
-    # location = relationship("Location", back_populates="experiences")  # Fixed relationship name
+    cv = relationship("CV", back_populates="experience")
+    # location = relationship("Location", back_populates="experience")  # Fixed relationship name
     
     __table_args__ = (
         Index('idx_experience_not_deleted', 'deleted', postgresql_where=text('deleted = false')),  # Fixed index name
