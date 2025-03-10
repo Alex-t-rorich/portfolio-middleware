@@ -29,8 +29,8 @@ class CV(Base):
     experience = relationship("Experience", back_populates="cv")
     skill = relationship("Skill", back_populates="cv")
     education = relationship("Education", back_populates="cv")
-    # location = relationship("Location", back_populates="cv")
 
+    # Define a partial index for efficient queries on non-deleted records
     __table_args__ = (
         Index('idx_cv_not_deleted', 'deleted', postgresql_where=Text('deleted = false')),
     )

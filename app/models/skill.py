@@ -18,6 +18,7 @@ class Skill(Base):
     # Relationships
     cv = relationship("CV", back_populates="skill")
     
+    # Define a partial index for efficient queries on non-deleted records
     __table_args__ = (
         Index('idx_skill_not_deleted', 'deleted', postgresql_where=text('deleted = false')),
     )

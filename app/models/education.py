@@ -20,7 +20,7 @@ class Education(Base):
     # Relationships
     cv = relationship("CV", back_populates="education")
     
-
+    # Define a partial index for efficient queries on non-deleted records
     __table_args__ = (
         Index('idx_education_not_deleted', 'deleted', postgresql_where=text('deleted = false')),
     )
